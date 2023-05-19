@@ -1,0 +1,14 @@
+<script src="./TtsQuestV3Voicevox.js"></script>
+<script>
+function play() {
+  var speakerId = 1; // VOICEVOX:ずんだもん（あまあま）
+  var text = document.getElementById('text').value;
+  var ttsQuestApiKey = '' // optional
+  audio = new TtsQuestV3Voicevox(speakerId, text, ttsQuestApiKey);
+  audio.play();
+}
+</script>
+
+<textarea id="text"></textarea>
+<button onClick="play()">play</button>
+VOICEVOX:ずんだもん
