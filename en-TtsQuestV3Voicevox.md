@@ -1,5 +1,7 @@
 # TtsQuestV3Voicevox.js
 
+English | [日本語](./ja-TtsQuestV3Voicevox.md)
+
 TtsQuestV3Voicevox.js is a JavaScript class that allows you to generate speech using the TTS Quest V3 API with the Voicevox engine. It simplifies the process of synthesizing speech and playing it back in the browser.
 
 ## Prerequisites
