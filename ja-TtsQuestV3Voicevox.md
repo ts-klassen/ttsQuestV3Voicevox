@@ -2,7 +2,7 @@
 
 [English](./en-TtsQuestV3Voicevox.md) | 日本語
 
-TtsQuestV3Voicevox.jsは、Voicevoxエンジンを使用してTTS Quest V3 APIを利用して音声を生成するためのJavaScriptクラスです。ブラウザで音声合成を簡素化し、再生することができます。
+TtsQuestV3Voicevox.jsは、TTS Quest V3 VOICEVOX APIを利用して音声を生成するためのJavaScriptクラスです。ブラウザで音声合成を簡素化し、再生することができます。
 
 ## 必要なもの
 
@@ -40,3 +40,7 @@ TtsQuestV3Voicevox.jsを使用する前に、TTS QuestのAPIキーを取得す�
 ## ライセンス
 
 このプロジェクトはTTS QUEST PUBLIC Licenseの下でライセンスされています。詳細については[LICENSE](./LICENSE)ファイルを参照してください。
+
+[VOICEVOXの利用規約](https://voicevox.hiroshiba.jp/term/)、ならびに[そのキャクターや音声ライブラリなどの利用規約等](https://voicevox.hiroshiba.jp/)をご確認ください。
+
+ＶＯＩＣＥＶＯＸ は 廣芝　和之 の登録商標または商標です。su-shiki.comとtts.questが提供するAPI、WEBサイトおよびその他の同様のコンテンツは 廣芝　和之 に承認されたものではありません。
