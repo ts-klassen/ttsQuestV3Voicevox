@@ -79,3 +79,100 @@ wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78e
 ```
 
 のように、合成が完了しているファイルをダウンロードすることができます。合成が完了していないファイルは404エラーを返す他、ファイルの総数が判明するまでの間の`audioCount`は`0`です。
+
+## Web Api 仕様
+各エンドポイントでは、パラメーターをGETパラメーターとPOSTフォームパラメーターで渡すことができます。
+
+URLエンコードしたパラメーターのキーと値を`=`で区切り、それらを`&`で区切ります。同じキーが複数ある場合、どれが優先されるかは未定義です。
+
+GETパラメーターとして渡す場合は、値をURLエンコードしてURLの末尾に記載します。
+```
+?paramA=valueA&paramB=valueB
+```
+
+POSTで送信する場合は、ヘッダーの`content-type`を`application/x-www-form-urlencoded`に指定し、値をURLエンコードしてボディーに記載します。
+```
+paramA=valueA&paramB=valueB
+```
+
+レスポンスボディーはJSON形式で、`success`はステータスコードが200のとき`true`となります。
+`success`が`false`のときは、`errorMessage`に理由がありますが、単にステータスコードが書かれているだけのことが多いです。
+ステータスコードが429のときは、`retryAfter`の秒数待ってから再送してください。
+
+### エンドポイント一覧
+- `https://api.tts.quest/v3/voicevox/synthesis`
+- `https://api.tts.quest/v3/voicevox/speakers_array`
+- `https://audio*.tts.quest/v1/data/*/status.json`
+- `https://api.tts.quest/v3/key/points`
+- `https://api.tts.quest/v3/key/generate`
+
+### v3 voicevox synthesis
+URL: `https://api.tts.quest/v3/voicevox/synthesis`
+
+音声の合成をリクエストする。
+
+パラメーター
+- `speaker`: 話者を表す整数値。範囲外の場合はinvalidSpeakerエラーを返す。
+- `text`: 合成する文章。UTF-8。文字数が0の場合はtextRequiredエラー、長すぎる場合はtextTooLongエラーを返す。
+- `key`: apiKey。apiKeyが有効な場合は`isApiKeyValid`が`true`になり、高速で合成される。
+
+レスポンス
+- `isApiKeyValid`: `true`のとき、apiKeyのポイントを1文字あたり1ポイント消費して高速で合成する。
+- `speakerName`: 話者名
+- `audioStatusUrl`: 合成の状況を取得するためのURL。
+- `wavDownloadUrl`: 合成が完了したときのwavファイルURL。
+- `mp3DownloadUrl`: 合成が完了したときのmp3ファイルURL。
+- `mp3StreamingUrl`: ストリーミング用URL。
+
+### v3 voicevox speakers_array
+URL: `https://api.tts.quest/v3/voicevox/speakers_array`
+
+話者の一覧を取得する。配列のキーは0で始まり、話者IDに対応する。利用できない話者IDの値は`null`。
+
+パラメーター
+- `key`: apiKey。apiKeyが有効な場合は`isApiKeyValid`が`true`になり、高速で処理される。
+
+レスポンス
+- `isApiKeyValid`: `true`のとき、apiKeyのポイントを1消費して高速に処理する。
+- `speakers`: 話者名の配列
+
+### v3 voicevox status
+URL: `https://audio*.tts.quest/v1/data/*/status.json`
+
+`isAudioReady`と`isAudioError`の組み合わせで合成の状況を確認する。
+
+レスポンス
+- `isAudioReady`: `true`の場合、全ての合成が完了している。
+- `isAudioError`: `true`の場合、合成に失敗している。
+- `status`: 完了したら`done`になる他、失敗した際には原因が書かれることがある。
+- `speaker`: 話者ID。
+- `audioCount`: 分割された音声ファイルの総数。
+- `updatedTime`: 更新されたUNIX時間。
+
+### v3 key points
+URL: `https://api.tts.quest/v3/key/points`
+
+apiKeyの残りポイント数を確認する。
+
+パラメーター
+- `key`: apiKey。
+
+レスポンス
+- `isApiKeyValid`: apiKeyが有効であれば`true`であるが、ポイントが残っていない場合は`false`になる。
+- `points`: 残りポイント数。毎日朝9時（日本時間）にリセットされる。
+
+### v3 key generate
+URL: `https://api.tts.quest/v3/key/generate`
+
+最大24時間で、時間制限付きの使い捨てSubKeyを生成する。使用ポイント上限も設定可能。
+subKeyのポイント消費は、生成に用いたapiKeyに紐付けられる。
+
+パラメーター
+- `key`: apiKey。
+- `time`: subKeyが有効な秒数。指定がない場合は最大値に指定される。
+- `points`: ポイント上限。指定がない場合は無制限。保有するポイントの総数を超えて指定することが可能。
+
+レスポンス
+- `isApiKeyValid`: apiKeyが有効であれば`true`であるが、ポイントが残っていない場合は`false`になる。
+- `cost`: subKeyの生成に消費したポイント。subKeyが有効な秒数に連動し、1分であれば1ポイント、24時間であれば1000ポイント消費する。
+- `key`: 生成されたsubKey。
