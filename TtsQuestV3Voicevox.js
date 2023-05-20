@@ -17,8 +17,14 @@ class TtsQuestV3Voicevox extends Audio {
       if (typeof response.retryAfter !== 'undefined') {
         setTimeout(owner.#main, 1000*(1+response.retryAfter), owner, query);
       }
-      else {
+      else if (typeof response.mp3StreamingUrl !== 'undefined') {
         owner.src = response.mp3StreamingUrl;
+      }
+      else if (typeof response.errorMessage !== 'undefined') {
+        throw new Error(response.errorMessage);
+      }
+      else {
+        throw new Error("serverError");
       }
     });
   }
