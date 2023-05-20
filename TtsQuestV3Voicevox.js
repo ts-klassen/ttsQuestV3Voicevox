@@ -18,7 +18,6 @@ class TtsQuestV3Voicevox extends Audio {
         setTimeout(owner.#main, 1000*(1+response.retryAfter), owner, query);
       }
       else {
-        console.log(response.mp3StreamingUrl);
         owner.src = response.mp3StreamingUrl;
       }
     });
