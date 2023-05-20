@@ -21,7 +21,7 @@ TtsQuestV3Voicevox.jsを使用する前に、TTS QuestのAPIキーを取得す�
    ```javascript
    var speakerId = 1; // VOICEVOX:ずんだもん（あまあま）
    var text = "こんにちは";
-   var ttsQuestApiKey = ''; // オプション
+   var ttsQuestApiKey = ''; // 任意
    var audio = new TtsQuestV3Voicevox(speakerId, text, ttsQuestApiKey);
    ```
 
