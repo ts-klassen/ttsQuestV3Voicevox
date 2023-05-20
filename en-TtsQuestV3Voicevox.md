@@ -40,3 +40,5 @@ See the provided `sample.html` file for an example implementation using `TtsQues
 ## License
 
 This project is licensed under the TTS QUEST PUBLIC License. See the [LICENSE](./LICENSE) file for details.
+
+[Terms and conditions of VOICEVOX]((https://voicevox.hiroshiba.jp/term/)) applies.
