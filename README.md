@@ -169,10 +169,19 @@ subKeyのポイント消費は、生成に用いたapiKeyに紐付けられる�
 
 パラメーター
 - `key`: apiKey。
-- `time`: subKeyが有効な秒数。指定がない場合は最大値に指定される。
+- `time`: subKeyが有効な秒数。指定がない場合は最大値の86400秒に指定される。
 - `points`: ポイント上限。指定がない場合は無制限。保有するポイントの総数を超えて指定することが可能。
 
 レスポンス
 - `isApiKeyValid`: apiKeyが有効であれば`true`であるが、ポイントが残っていない場合は`false`になる。
 - `cost`: subKeyの生成に消費したポイント。subKeyが有効な秒数に連動し、1分であれば1ポイント、24時間であれば1000ポイント消費する。
 - `key`: 生成されたsubKey。
+
+## Api Key
+apiKeyは[こちら](https://su-shiki.com/api/)で取得できます。VOICEVOX用のapiKeyを取得するのチェックボックスにチェックを入れ、VOICEVOX用API利用登録を行ってください。
+
+すでにsu-shiki.comのapiKeyを取得している場合は、そのsha256ハッシュ値を[こちら](https://docs.google.com/forms/d/e/1FAIpQLSfE1oMXK2sZqoei8zFs1xHC2jb6Fhp5hY3QdU0vRbK2ZLuM0Q/viewform?usp=sf_link)に登録して有効化してください。
+別のapiKeyを登録するには、「回答を編集」から再登録してください。
+なお、Googleフォームの回答を編集する際は、そのURLを公開しないでください。
+「回答を編集しています。この URL を共有すると、他のユーザーもあなたの回答を編集できるようになります。」とあるように、ログインしていないユーザーでもあなたのアカウントでapiKeyを登録、上書きできてしまいます。
+流出した回答フォームは無効化され、同アカウントでは一切の利用申請ができなくなります。
