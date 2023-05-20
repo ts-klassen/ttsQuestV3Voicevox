@@ -68,14 +68,14 @@ wavファイルは
 ```bash
 wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/0.wav
 wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/1.wav
-wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/02.wav
+wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/2.wav
 ```
 
 mp3ファイルは
 ```bash
 wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/0.mp3
 wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/1.mp3
-wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/02.mp3
+wget https://audio1.tts.quest/v1/data/e8ffdebfc288edb743c0bf0cf4b28834a53b26a78eeeca3586c857825ab0ae7a/2.mp3
 ```
 
 のように、合成が完了しているファイルをダウンロードすることができます。合成が完了していないファイルは404エラーを返す他、ファイルの総数が判明するまでの間の`audioCount`は`0`です。
