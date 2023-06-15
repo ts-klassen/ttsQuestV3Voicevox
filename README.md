@@ -136,6 +136,21 @@ URL: `https://api.tts.quest/v3/voicevox/speakers_array`
 - `isApiKeyValid`: `true`のとき、apiKeyのポイントを1消費して高速に処理する。
 - `speakers`: 話者名の配列
 
+#### 代替
+apiポイントを消費しない方法として、
+- https://static.tts.quest/voicevox_speakers.json
+- https://static.tts.quest/voicevox_speakers_utf8.json
+
+から話者を取得することもできる。また、idが3の話者名は
+
+https://static.tts.quest/voicevox_speakers_by_id/3.txt
+
+のように、
+```
+https://static.tts.quest/voicevox_speakers_by_id/${id}.txt
+```
+でidに対応した話者名を取得できる。
+
 ### v3 voicevox status
 URL: `https://audio*.tts.quest/v1/data/*/status.json`
 
