@@ -205,3 +205,5 @@ apiKeyは[こちら](https://su-shiki.com/api/)で取得できます。VOICEVOX�
 [VOICEVOXの利用規約](https://voicevox.hiroshiba.jp/term/)、ならびに[そのキャクターや音声ライブラリなどの利用規約等](https://voicevox.hiroshiba.jp/)をご確認ください。
 
 ＶＯＩＣＥＶＯＸ は 廣芝　和之 の登録商標または商標です。su-shiki.comとtts.questが提供するAPI、WEBサイトおよびその他の同様のコンテンツは 廣芝　和之 に承認されたものではありません。
+
+ずんだもん は ＳＳＳ合同会社 の登録商標または商標です。
